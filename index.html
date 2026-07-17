@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nekaile-Tamia Grant · CV</title>
+  <title>Nekaile-Tamia Grant · Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
     /* ============================================================
        RESET & BASE
@@ -14,546 +14,947 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --black:    #141414;
-      --gray-9:   #2a2a2a;
-      --gray-8:   #3d3d3d;
-      --gray-7:   #5b5b5b;
-      --gray-6:   #777777;
-      --gray-5:   #6e6e6e;
-      --gray-4:   #999999;
-      --gray-3:   #b8b8b8;
-      --gray-2:   #d6d6d6;
-      --gray-1:   #eaeaea;
-      --gray-0:   #f5f5f5;
-      --white:    #ffffff;
-      --accent:   #1f1f1f;
-      --sidebar:  #f2f2f2;
+      --navy:       #1a1f36;
+      --navy-light: #2a3050;
+      --navy-mid:   #232946;
+      --gold:       #d4a373;
+      --gold-light: #e8d5b7;
+      --gold-pale:  #f5ede1;
+      --cream:      #fcf9f6;
+      --warm-white: #fefcf9;
+      --card-bg:    #ffffff;
+      --text-dark:  #2d2a24;
+      --text-mid:   #6b6560;
+      --text-light: #99948f;
+      --border:     #e8e3de;
+      --shadow-sm:  0 2px 8px rgba(26,31,54,.06);
+      --shadow-md:  0 8px 30px rgba(26,31,54,.08);
+      --shadow-lg:  0 20px 60px rgba(26,31,54,.12);
+      --radius:     12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
     }
 
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #e8e8e8;
-      color: var(--gray-9);
-      line-height: 1.45;
-      padding: 2rem 1rem;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     /* ============================================================
-       A4 PAGE WRAPPER
+       UTILITY ANIMATIONS
        ============================================================ */
-    .page {
-      width: 210mm;
-      min-height: 297mm;
-      max-height: 297mm;
-      margin: 0 auto;
-      background: var(--white);
-      box-shadow:
-        0 2px 30px rgba(0,0,0,.08),
-        0 0 0 1px rgba(0,0,0,.05);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,163,115,.3); }
+      50%      { box-shadow: 0 0 0 8px rgba(212,163,115,0); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
     }
 
-    /* Elegant page border */
-    .page-inner-border {
-      flex: 1;
-      margin: 6mm;
-      border: 1px solid var(--gray-2);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1),
+                  transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1),
+                  transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1),
+                  transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(.92);
+      transition: opacity .6s cubic-bezier(.22,1,.36,1),
+                  transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* Decorative corner accents */
-    .page-inner-border::before,
-    .page-inner-border::after {
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: .8rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      transition: background .3s ease, box-shadow .3s ease;
+    }
+    nav.scrolled {
+      background: #fcf9f6;
+      background: rgba(252,249,246,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    nav a {
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      letter-spacing: .03em;
+      position: relative;
+      padding: .25rem 0;
+      transition: color .25s ease;
+    }
+    nav a::after {
       content: "";
       position: absolute;
-      width: 18px;
-      height: 18px;
-      border-color: var(--gray-3);
-      border-style: solid;
+      bottom: 0; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--gold);
+      transition: width .35s cubic-bezier(.22,1,.36,1);
     }
-    .page-inner-border::before {
-      top: -1px;
-      left: -1px;
-      border-width: 2px 0 0 2px;
+    nav a:hover { color: var(--navy); }
+    nav a:hover::after { width: 100%; }
+    nav a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
     }
-    .page-inner-border::after {
-      top: -1px;
-      right: -1px;
-      border-width: 2px 2px 0 0;
+
+    @media (max-width: 600px) {
+      nav { gap: 1.2rem; padding: .6rem 1rem; }
+      nav a { font-size: .7rem; }
     }
 
     /* ============================================================
-       HEADER BAND
+       HERO
        ============================================================ */
-    .header-band {
-      background: var(--sidebar);
-      padding: 1.1rem 1.6rem 0.9rem;
-      border-bottom: 2px solid var(--gray-2);
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1.5rem 3rem;
       position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy-light) 100%);
+    }
+    /* Decorative background shapes */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -30%; right: -15%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,163,115,.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -20%; left: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,163,115,.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
-    .header-band h1 {
-      font-size: 1.7rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--black);
-      line-height: 1.15;
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
-    .header-band .subtitle {
-      font-size: 0.58rem;
-      font-weight: 400;
+
+    .hero-badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gray-6);
-      display: block;
-      margin-bottom: 0.05rem;
+      color: var(--gold);
+      background: rgba(212,163,115,.12);
+      border: 1px solid rgba(212,163,115,.2);
+      padding: .35rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .8s ease both;
     }
 
-    /* Contact row inside header */
-    .contact-strip {
+    .hero h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.4rem, 7vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      margin-bottom: .6rem;
+      animation: fadeUp .8s ease .15s both;
+    }
+    .hero h1 .highlight {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 2rem;
+      animation: fadeUp .8s ease .3s both;
+    }
+
+    .hero-contact {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.1rem 1.2rem;
-      margin-top: 0.45rem;
-      padding-top: 0.45rem;
-      border-top: 1px solid var(--gray-2);
+      justify-content: center;
+      gap: .3rem 1.5rem;
+      animation: fadeUp .8s ease .45s both;
     }
-    .contact-strip span,
-    .contact-strip a {
-      font-size: 0.68rem;
-      color: var(--gray-7);
+    .hero-contact a,
+    .hero-contact span {
+      font-size: .82rem;
+      color: rgba(255,255,255,.65);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: .4rem;
+      transition: color .25s ease;
     }
-    .contact-strip a:hover { color: var(--accent); }
-    .contact-strip .sep {
-      color: var(--gray-3);
-      font-weight: 300;
+    .hero-contact a:hover { color: var(--gold); }
+    .hero-contact a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .hero-contact .sep {
+      color: rgba(255,255,255,.15);
     }
 
-    /* ============================================================
-       INNER CONTENT
-       ============================================================ */
-    .content {
-      padding: 0.8rem 1.6rem 0.7rem;
-      flex: 1;
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      animation: fadeIn 1s ease 1s both;
+    }
+    .scroll-hint span {
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: rgba(255,255,255,.3);
+    }
+    .scroll-hint .mouse {
+      width: 18px; height: 28px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      border-radius: 10px;
+      position: relative;
+    }
+    .scroll-hint .mouse::after {
+      content: "";
+      position: absolute;
+      top: 5px; left: 50%;
+      transform: translateX(-50%);
+      width: 3px; height: 6px;
+      background: var(--gold);
+      border-radius: 3px;
+      animation: float 1.5s ease-in-out infinite;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 5rem 1.2rem 2.5rem; }
+      .hero-contact { gap: .2rem 1rem; }
+      .hero-contact a,
+      .hero-contact span { font-size: .74rem; }
     }
 
     /* ============================================================
-       SECTION HEADINGS
+       SECTIONS — GENERAL
        ============================================================ */
-    .section {
-      margin-bottom: 0.65rem;
-    }
-    .section:last-of-type {
-      margin-bottom: 0;
+    section { padding: 4.5rem 1.5rem; }
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
     }
 
-    .section-head {
+    .section-label {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.35rem;
+      gap: .75rem;
+      margin-bottom: .5rem;
     }
-    .section-head .accent-line {
-      display: block;
-      width: 3px;
-      height: 14px;
-      background: var(--accent);
+    .section-label .line {
+      width: 28px; height: 2px;
+      background: var(--gold);
       border-radius: 2px;
-      flex-shrink: 0;
     }
-    .section-head h2 {
-      font-size: 0.62rem;
+    .section-label span {
+      font-size: .65rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
+      letter-spacing: .15em;
+      color: var(--text-light);
     }
-    .section-head .rule {
-      flex: 1;
-      height: 1px;
-      background: var(--gray-2);
+
+    .section-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 3rem 1.2rem; }
     }
 
     /* ============================================================
-       PROFILE
+       ABOUT
        ============================================================ */
-    .profile-text {
-      font-size: 0.75rem;
-      line-height: 1.55;
-      color: var(--gray-8);
+    #about {
+      background: var(--warm-white);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .about-text {
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
+    .about-text strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .about-quote {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .about-quote::before {
+      content: "\201C";
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 3.5rem;
+      color: var(--gold);
+      position: absolute;
+      top: .2rem; left: .8rem;
+      line-height: 1;
+      opacity: .4;
+    }
+    .about-quote p {
+      font-size: .88rem;
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .about-quote .attribution {
+      display: block;
+      margin-top: .6rem;
+      font-size: .75rem;
+      font-style: normal;
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 
     /* ============================================================
-       SKILLS — card-style layout
+       SKILLS
        ============================================================ */
+    #skills {
+      background: var(--cream);
+    }
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.45rem;
+      gap: .9rem;
     }
     .skill-card {
-      background: var(--sidebar);
-      border: 1px solid var(--gray-1);
-      border-radius: 3px;
-      padding: 0.35rem 0.5rem 0.3rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.1rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform .35s cubic-bezier(.22,1,.36,1),
+                  box-shadow .35s ease;
+      cursor: default;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .skill-card .icon {
+      width: 32px; height: 32px;
+      background: var(--gold-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .6rem;
+      font-size: .85rem;
+      color: var(--gold);
     }
     .skill-card h4 {
-      font-size: 0.58rem;
+      font-size: .72rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--gray-6);
-      margin-bottom: 0.05rem;
+      letter-spacing: .06em;
+      color: var(--navy);
+      margin-bottom: .2rem;
     }
     .skill-card p {
-      font-size: 0.65rem;
-      color: var(--gray-8);
-      line-height: 1.4;
+      font-size: .78rem;
+      color: var(--text-mid);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 700px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+    }
+    @media (max-width: 450px) {
+      .skills-grid { grid-template-columns: 1fr; }
     }
 
     /* ============================================================
-       EXPERIENCE — timeline-style
+       EXPERIENCE
        ============================================================ */
-    .exp-list {
-      display: flex;
-      flex-direction: column;
-    }
-    .exp-row {
-      display: grid;
-      grid-template-columns: 135px 1fr;
-      gap: 0.75rem;
-      padding: 0.3rem 0;
-      border-bottom: 1px solid var(--gray-1);
-      position: relative;
-    }
-    .exp-row:last-child {
-      border-bottom: none;
+    #experience {
+      background: var(--warm-white);
     }
 
-    /* Timeline dot on the right edge of meta column */
-    .exp-meta {
-      text-align: right;
+    .timeline {
       position: relative;
+      padding-left: 2rem;
     }
-    .exp-meta::after {
+    .timeline::before {
       content: "";
       position: absolute;
-      right: calc(-0.375rem - 3px);
+      left: 7px; top: 8px; bottom: 8px;
+      width: 1.5px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -2rem;
       top: 4px;
-      width: 6px;
-      height: 6px;
-      background: var(--gray-3);
-      border: 1px solid var(--gray-2);
+      width: 15px; height: 15px;
+      background: var(--card-bg);
+      border: 2px solid var(--gold);
       border-radius: 50%;
+      z-index: 1;
+      transition: background .3s ease, transform .3s ease;
     }
-    .exp-meta .title {
-      font-size: 0.72rem;
+    .tl-item:hover .tl-dot {
+      background: var(--gold);
+      transform: scale(1.15);
+    }
+
+    .tl-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform .35s cubic-bezier(.22,1,.36,1),
+                  box-shadow .35s ease;
+    }
+    .tl-card:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tl-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: .3rem .8rem;
+      margin-bottom: .4rem;
+    }
+    .tl-header .title {
+      font-size: .88rem;
       font-weight: 600;
-      color: var(--accent);
-      display: block;
+      color: var(--navy);
     }
-    .exp-meta .company {
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: var(--gray-6);
-      display: block;
+    .tl-header .company {
+      font-size: .78rem;
+      color: var(--text-mid);
     }
-    .exp-meta .dates {
-      font-size: 0.6rem;
-      font-weight: 400;
-      color: var(--gray-4);
-      display: block;
-      margin-top: 0.05rem;
+    .tl-header .dates {
+      font-size: .7rem;
+      color: var(--text-light);
+      margin-left: auto;
+      white-space: nowrap;
     }
 
-    /* Vertical timeline line connecting dots */
-    .exp-list {
-      position: relative;
-    }
-    .exp-list::before {
-      content: "";
-      position: absolute;
-      left: calc(135px + 0.375rem);
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--gray-2);
-    }
-
-    .exp-body ul {
+    .tl-body ul {
       list-style: none;
       padding: 0;
     }
-    .exp-body ul li {
-      font-size: 0.68rem;
-      color: var(--gray-8);
-      line-height: 1.5;
+    .tl-body ul li {
+      font-size: .8rem;
+      color: var(--text-mid);
+      line-height: 1.55;
       position: relative;
-      padding-left: 0.85rem;
-      margin-bottom: 0.02rem;
+      padding-left: 1.1rem;
+      margin-bottom: .15rem;
     }
-    .exp-body ul li::before {
-      content: "–";
+    .tl-body ul li::before {
+      content: "\2013";
       position: absolute;
       left: 0;
-      color: var(--gray-3);
+      color: var(--gold);
+    }
+
+    @media (max-width: 600px) {
+      .timeline { padding-left: 1.5rem; }
+      .tl-item { padding-left: 1rem; }
+      .tl-dot { left: -1.5rem; width: 13px; height: 13px; }
+      .tl-header .dates { margin-left: 0; width: 100%; }
     }
 
     /* ============================================================
        EDUCATION
        ============================================================ */
-    .edu-block {
-      font-size: 0.7rem;
-      color: var(--gray-8);
-      line-height: 1.5;
+    #education {
+      background: var(--cream);
     }
-    .edu-block strong {
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+    .edu-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--gold-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .edu-card h4 {
+      font-size: .85rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--navy);
+      margin-bottom: .15rem;
+    }
+    .edu-card p {
+      font-size: .8rem;
+      color: var(--text-mid);
+      line-height: 1.55;
     }
 
     /* ============================================================
-       REFERENCES (pushed to bottom)
+       REFERENCES / FOOTER
        ============================================================ */
-    .ref-section {
-      margin-top: auto;
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--gray-2);
+    #references {
+      background: var(--navy);
+      padding: 3rem 1.5rem;
+      text-align: center;
     }
-    .ref-section .ref-note {
-      font-size: 0.65rem;
-      color: var(--gray-6);
+    .ref-content {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .ref-content .section-label {
+      justify-content: center;
+    }
+    .ref-content .section-label span {
+      color: rgba(255,255,255,.4);
+    }
+    .ref-content .section-label .line {
+      background: rgba(212,163,115,.4);
+    }
+    .ref-content p {
+      font-size: .9rem;
+      color: rgba(255,255,255,.65);
       font-style: italic;
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+    }
+    .footer-bottom p {
+      font-size: .7rem;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .03em;
     }
 
     /* ============================================================
-       PRINT
+       RESPONSIVE TWEAKS
        ============================================================ */
-    @media print {
-      body {
-        background: #fff;
-        padding: 0;
-        font-family: "Inter", Arial, Helvetica, sans-serif;
-      }
-      .page {
-        box-shadow: none;
-        width: 210mm;
-        min-height: 297mm;
-        max-height: 297mm;
-        overflow: hidden;
-      }
-      .page-inner-border {
-        margin: 5mm;
-      }
-      .content {
-        padding: 0.7rem 1.4rem 0.6rem;
-      }
-      .header-band {
-        padding: 0.9rem 1.4rem 0.7rem;
-      }
-      .contact-strip a,
-      .contact-strip a:hover { color: var(--gray-7); }
-      .skill-card { break-inside: avoid; }
-      .exp-row { break-inside: avoid; }
+    @media (max-width: 600px) {
+      .edu-card { flex-direction: column; gap: .6rem; padding: 1.2rem 1.3rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="page">
-  <div class="page-inner-border">
+  <!-- ===== NAV ===== -->
+  <nav id="navbar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#references">Contact</a>
+  </nav>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header-band">
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="top">
+    <div class="hero-content">
+      <span class="hero-badge">✦ Curriculum Vitae</span>
       <h1>
-        <span class="subtitle">Curriculum Vitae</span>
-        Nekaile-Tamia Grant
+        Nekaile-Tamia<br />
+        <span class="highlight">Grant</span>
       </h1>
-      <div class="contact-strip">
+      <p class="subtitle">Cross-functional professional · Administration · Marketing · Social Media</p>
+      <div class="hero-contact">
         <a href="mailto:nekailetamiagrant@gmail.com">nekailetamiagrant@gmail.com</a>
-        <span class="sep">|</span>
+        <span class="sep">·</span>
         <span>076 246 5279</span>
-        <span class="sep">|</span>
+        <span class="sep">·</span>
         <span>Piet Retief</span>
       </div>
-    </header>
+    </div>
+    <div class="scroll-hint">
+      <div class="mouse"></div>
+      <span>Scroll</span>
+    </div>
+  </header>
 
-    <!-- ===== CONTENT ===== -->
-    <div class="content">
-
-      <!-- PROFILE -->
-      <section class="section">
-        <div class="section-head">
-          <span class="accent-line"></span>
-          <h2>Professional Profile</h2>
-          <span class="rule"></span>
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="line"></span>
+        <span>About</span>
+      </div>
+      <h2 class="section-title reveal">Professional Profile</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            Dedicated and results-driven professional with cross-functional experience across
+            <strong>Administration</strong>, <strong>Marketing</strong>, <strong>Social Media</strong>,
+            <strong>Call Centre</strong>, and <strong>Hospitality</strong>. Adept at content creation,
+            data capture, campaign support, and delivering exceptional customer experiences. Known for
+            strong organisational abilities, natural rapport-building, and the capacity to thrive in
+            fast-paced environments.
+          </p>
+          <p style="margin-top:.8rem;">
+            Eager to bring versatility and a growth mindset to a dynamic team where I can
+            contribute meaningfully and continue developing.
+          </p>
         </div>
-        <p class="profile-text">
-          Dedicated and results-driven professional with cross-functional experience across
-          <strong>Administration</strong>, <strong>Marketing</strong>, <strong>Social Media</strong>,
-          <strong>Call Centre</strong>, and <strong>Hospitality</strong>. Adept at content creation,
-          data capture, campaign support, and delivering exceptional customer experiences. Known for
-          strong organisational abilities, natural rapport-building, and the capacity to thrive in
-          fast-paced environments. Eager to bring versatility and a growth mindset to a dynamic team.
-        </p>
-      </section>
-
-      <!-- CORE COMPETENCIES -->
-      <section class="section">
-        <div class="section-head">
-          <span class="accent-line"></span>
-          <h2>Core Competencies</h2>
-          <span class="rule"></span>
+        <div class="about-quote reveal-right">
+          <p>Every role has been a deliberate step toward mastering customer engagement, operational support, and brand communication — competencies that real-world practice alone can teach.</p>
+          <span class="attribution">— Nekaile-Tamia Grant</span>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <h4>Administration</h4>
-            <p>Data capture, filing, email, scheduling &amp; calendar coordination</p>
-          </div>
-          <div class="skill-card">
-            <h4>Marketing</h4>
-            <p>Campaign support, market research, lead gen, content planning</p>
-          </div>
-          <div class="skill-card">
-            <h4>Social Media</h4>
-            <p>Facebook, Instagram &amp; TikTok; content creation, caption writing, engagement</p>
-          </div>
-          <div class="skill-card">
-            <h4>Call Centre</h4>
-            <p>Inbound &amp; outbound calls, customer support, sales, complaints handling</p>
-          </div>
-          <div class="skill-card">
-            <h4>Hospitality</h4>
-            <p>Waitering, front-of-house, cash handling, order management, service standards</p>
-          </div>
-          <div class="skill-card">
-            <h4>Core Strengths</h4>
-            <p>Communication, time management, teamwork, problem-solving, adaptability</p>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- PROFESSIONAL EXPERIENCE -->
-      <section class="section" style="flex:1;">
-        <div class="section-head">
-          <span class="accent-line"></span>
-          <h2>Professional Experience</h2>
-          <span class="rule"></span>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="line"></span>
+        <span>Core Competencies</span>
+      </div>
+      <h2 class="section-title reveal">What I Bring</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal-scale" style="transition-delay:0s">
+          <div class="icon">📋</div>
+          <h4>Administration</h4>
+          <p>Data capture, filing, email correspondence, scheduling &amp; calendar coordination</p>
         </div>
-        <div class="exp-list">
+        <div class="skill-card reveal-scale" style="transition-delay:.05s">
+          <div class="icon">📈</div>
+          <h4>Marketing</h4>
+          <p>Campaign support, market research, lead generation, content planning &amp; coordination</p>
+        </div>
+        <div class="skill-card reveal-scale" style="transition-delay:.1s">
+          <div class="icon">📱</div>
+          <h4>Social Media</h4>
+          <p>Facebook, Instagram &amp; TikTok management, content creation, caption writing, engagement</p>
+        </div>
+        <div class="skill-card reveal-scale" style="transition-delay:.15s">
+          <div class="icon">📞</div>
+          <h4>Call Centre</h4>
+          <p>Inbound &amp; outbound calls, customer support, sales, complaints resolution &amp; handling</p>
+        </div>
+        <div class="skill-card reveal-scale" style="transition-delay:.2s">
+          <div class="icon">🍽️</div>
+          <h4>Hospitality</h4>
+          <p>Waitering, front-of-house service, cash handling, order management, service standards</p>
+        </div>
+        <div class="skill-card reveal-scale" style="transition-delay:.25s">
+          <div class="icon">💡</div>
+          <h4>Core Strengths</h4>
+          <p>Communication, time management, teamwork, problem-solving, adaptability, attention to detail</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="exp-row">
-            <div class="exp-meta">
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="line"></span>
+        <span>Experience</span>
+      </div>
+      <h2 class="section-title reveal">Where I've Worked</h2>
+      <div class="timeline">
+
+        <div class="tl-item reveal-left" style="transition-delay:0s">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
               <span class="title">Marketing Assistant</span>
-              <span class="company">MadsLabs</span>
+              <span class="company">– MadsLabs</span>
               <span class="dates">Apr – Jun 2026</span>
             </div>
-            <div class="exp-body">
+            <div class="tl-body">
               <ul>
                 <li>Planned and executed marketing campaigns; created content and managed posting schedules</li>
                 <li>Supported admin operations: reporting, data entry, customer follow-ups, performance tracking</li>
               </ul>
             </div>
           </div>
+        </div>
 
-          <div class="exp-row">
-            <div class="exp-meta">
+        <div class="tl-item reveal-left" style="transition-delay:.08s">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
               <span class="title">Social Media Marketing</span>
-              <span class="company">Freelance / Contract</span>
+              <span class="company">– Freelance / Contract</span>
               <span class="dates">Ongoing freelance</span>
             </div>
-            <div class="exp-body">
+            <div class="tl-body">
               <ul>
                 <li>Managed Facebook &amp; Instagram pages; designed posts, wrote captions, grew brand awareness</li>
                 <li>Responded to customer enquiries, boosted engagement, aligned content with platform trends</li>
               </ul>
             </div>
           </div>
+        </div>
 
-          <div class="exp-row">
-            <div class="exp-meta">
+        <div class="tl-item reveal-left" style="transition-delay:.16s">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
               <span class="title">Call Centre Agent</span>
-              <span class="company">COMM</span>
+              <span class="company">– COMM</span>
               <span class="dates">Feb – May 2023</span>
             </div>
-            <div class="exp-body">
+            <div class="tl-body">
               <ul>
                 <li>Handled high-volume inbound &amp; outbound calls; resolved queries and complaints professionally</li>
                 <li>Met daily performance targets for call handling and sales; maintained accurate CRM records</li>
               </ul>
             </div>
           </div>
+        </div>
 
-          <div class="exp-row">
-            <div class="exp-meta">
+        <div class="tl-item reveal-left" style="transition-delay:.24s">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
               <span class="title">Waitress</span>
-              <span class="company">Ocean Basket</span>
+              <span class="company">– Ocean Basket</span>
               <span class="dates">Jan – Dec 2021</span>
             </div>
-            <div class="exp-body">
+            <div class="tl-body">
               <ul>
                 <li>Delivered attentive service in a busy restaurant; took orders, processed payments, handled cash</li>
                 <li>Maintained dining standards; collaborated with team during peak hours under pressure</li>
               </ul>
             </div>
           </div>
+        </div>
 
-          <div class="exp-row">
-            <div class="exp-meta">
+        <div class="tl-item reveal-left" style="transition-delay:.32s">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
               <span class="title">Administrative Assistant</span>
-              <span class="company">Lee-ann SL Contractors</span>
+              <span class="company">– Lee-ann SL Contractors</span>
               <span class="dates">2025 · Temporary</span>
             </div>
-            <div class="exp-body">
+            <div class="tl-body">
               <ul>
                 <li>Performed data capturing, digital filing, email correspondence; scheduled appointments</li>
                 <li>Supported daily admin operations and ad-hoc tasks for the broader team</li>
               </ul>
             </div>
           </div>
-
         </div>
-        
-        <!-- EDUCATION -->
-        <section class="section">
-          <div class="section-head">
-            <span class="accent-line"></span>
-            <h2>Education &amp; Development</h2>
-            <span class="rule"></span>
-          </div>
-          <div class="edu-block">
-            <p><strong>Experiential Pathway</strong> — Strong hands-on foundation built across multiple
-            disciplines: customer engagement, operational support, and brand communication. Every role
-            has been a deliberate step toward mastering these competencies through real-world practice.</p>
-          </div>
-        </section>
 
-        <!-- REFERENCES (pinned to bottom) -->
-        <section class="ref-section">
-          <div class="section-head">
-            <span class="accent-line"></span>
-            <h2>References</h2>
-            <span class="rule"></span>
-          </div>
-          <p class="ref-note">Professional references are available upon request.</p>
-        </section>
-      </section>
+      </div>
+    </div>
+  </section>
 
-    </div><!-- /content -->
-  </div><!-- /page-inner-border -->
-</div><!-- /page -->
+  <!-- ===== EDUCATION ===== -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="line"></span>
+        <span>Education</span>
+      </div>
+      <h2 class="section-title reveal">Learning &amp; Development</h2>
+      <div class="edu-card reveal-scale">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <h4>Experiential Pathway</h4>
+          <p>Strong hands-on foundation built across multiple disciplines: customer engagement, operational support, and brand communication. Every role has been a deliberate step toward mastering these competencies through real-world practice – competencies that traditional classrooms alone cannot teach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== REFERENCES ===== -->
+  <section id="references">
+    <div class="ref-content">
+      <div class="section-label reveal">
+        <span class="line"></span>
+        <span>References</span>
+      </div>
+      <p class="reveal">Professional references are available upon request. I'd be happy to connect you with former employers and colleagues who can speak to my work ethic and contributions.</p>
+    </div>
+  </section>
+
+  <footer class="footer-bottom">
+    <p>Nekaile-Tamia Grant · nekailetamiagrant@gmail.com · 076 246 5279</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    (function() {
+      /* ---- Nav scroll effect ---- */
+      const nav = document.getElementById('navbar');
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(function() {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      /* ---- Intersection Observer for reveal animations ---- */
+      const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealEls.forEach(function(el) { observer.observe(el); });
+      } else {
+        /* Fallback: show everything */
+        revealEls.forEach(function(el) { el.classList.add('visible'); });
+      }
+    })();
+  </script>
 </body>
 </html>
