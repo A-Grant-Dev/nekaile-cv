@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nekaile-Tamia Grant · CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:    #141414;
+      --gray-9:   #2a2a2a;
+      --gray-8:   #3d3d3d;
+      --gray-7:   #5b5b5b;
+      --gray-6:   #777777;
+      --gray-5:   #6e6e6e;
+      --gray-4:   #999999;
+      --gray-3:   #b8b8b8;
+      --gray-2:   #d6d6d6;
+      --gray-1:   #eaeaea;
+      --gray-0:   #f5f5f5;
+      --white:    #ffffff;
+      --accent:   #1f1f1f;
+      --sidebar:  #f2f2f2;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #e8e8e8;
+      color: var(--gray-9);
+      line-height: 1.45;
+      padding: 2rem 1rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ============================================================
+       A4 PAGE WRAPPER
+       ============================================================ */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow:
+        0 2px 30px rgba(0,0,0,.08),
+        0 0 0 1px rgba(0,0,0,.05);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Elegant page border */
+    .page-inner-border {
+      flex: 1;
+      margin: 6mm;
+      border: 1px solid var(--gray-2);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Decorative corner accents */
+    .page-inner-border::before,
+    .page-inner-border::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: var(--gray-3);
+      border-style: solid;
+    }
+    .page-inner-border::before {
+      top: -1px;
+      left: -1px;
+      border-width: 2px 0 0 2px;
+    }
+    .page-inner-border::after {
+      top: -1px;
+      right: -1px;
+      border-width: 2px 2px 0 0;
+    }
+
+    /* ============================================================
+       HEADER BAND
+       ============================================================ */
+    .header-band {
+      background: var(--sidebar);
+      padding: 1.1rem 1.6rem 0.9rem;
+      border-bottom: 2px solid var(--gray-2);
+      position: relative;
+    }
+
+    .header-band h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      line-height: 1.15;
+    }
+    .header-band .subtitle {
+      font-size: 0.58rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gray-6);
+      display: block;
+      margin-bottom: 0.05rem;
+    }
+
+    /* Contact row inside header */
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.1rem 1.2rem;
+      margin-top: 0.45rem;
+      padding-top: 0.45rem;
+      border-top: 1px solid var(--gray-2);
+    }
+    .contact-strip span,
+    .contact-strip a {
+      font-size: 0.68rem;
+      color: var(--gray-7);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .contact-strip a:hover { color: var(--accent); }
+    .contact-strip .sep {
+      color: var(--gray-3);
+      font-weight: 300;
+    }
+
+    /* ============================================================
+       INNER CONTENT
+       ============================================================ */
+    .content {
+      padding: 0.8rem 1.6rem 0.7rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ============================================================
+       SECTION HEADINGS
+       ============================================================ */
+    .section {
+      margin-bottom: 0.65rem;
+    }
+    .section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.35rem;
+    }
+    .section-head .accent-line {
+      display: block;
+      width: 3px;
+      height: 14px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-head h2 {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+    .section-head .rule {
+      flex: 1;
+      height: 1px;
+      background: var(--gray-2);
+    }
+
+    /* ============================================================
+       PROFILE
+       ============================================================ */
+    .profile-text {
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: var(--gray-8);
+    }
+
+    /* ============================================================
+       SKILLS — card-style layout
+       ============================================================ */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.45rem;
+    }
+    .skill-card {
+      background: var(--sidebar);
+      border: 1px solid var(--gray-1);
+      border-radius: 3px;
+      padding: 0.35rem 0.5rem 0.3rem;
+    }
+    .skill-card h4 {
+      font-size: 0.58rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--gray-6);
+      margin-bottom: 0.05rem;
+    }
+    .skill-card p {
+      font-size: 0.65rem;
+      color: var(--gray-8);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       EXPERIENCE — timeline-style
+       ============================================================ */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .exp-row {
+      display: grid;
+      grid-template-columns: 135px 1fr;
+      gap: 0.75rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--gray-1);
+      position: relative;
+    }
+    .exp-row:last-child {
+      border-bottom: none;
+    }
+
+    /* Timeline dot on the right edge of meta column */
+    .exp-meta {
+      text-align: right;
+      position: relative;
+    }
+    .exp-meta::after {
+      content: "";
+      position: absolute;
+      right: calc(-0.375rem - 3px);
+      top: 4px;
+      width: 6px;
+      height: 6px;
+      background: var(--gray-3);
+      border: 1px solid var(--gray-2);
+      border-radius: 50%;
+    }
+    .exp-meta .title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: block;
+    }
+    .exp-meta .company {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--gray-6);
+      display: block;
+    }
+    .exp-meta .dates {
+      font-size: 0.6rem;
+      font-weight: 400;
+      color: var(--gray-4);
+      display: block;
+      margin-top: 0.05rem;
+    }
+
+    /* Vertical timeline line connecting dots */
+    .exp-list {
+      position: relative;
+    }
+    .exp-list::before {
+      content: "";
+      position: absolute;
+      left: calc(135px + 0.375rem);
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--gray-2);
+    }
+
+    .exp-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .exp-body ul li {
+      font-size: 0.68rem;
+      color: var(--gray-8);
+      line-height: 1.5;
+      position: relative;
+      padding-left: 0.85rem;
+      margin-bottom: 0.02rem;
+    }
+    .exp-body ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--gray-3);
+    }
+
+    /* ============================================================
+       EDUCATION
+       ============================================================ */
+    .edu-block {
+      font-size: 0.7rem;
+      color: var(--gray-8);
+      line-height: 1.5;
+    }
+    .edu-block strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ============================================================
+       REFERENCES (pushed to bottom)
+       ============================================================ */
+    .ref-section {
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--gray-2);
+    }
+    .ref-section .ref-note {
+      font-size: 0.65rem;
+      color: var(--gray-6);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       PRINT
+       ============================================================ */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        font-family: "Inter", Arial, Helvetica, sans-serif;
+      }
+      .page {
+        box-shadow: none;
+        width: 210mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        overflow: hidden;
+      }
+      .page-inner-border {
+        margin: 5mm;
+      }
+      .content {
+        padding: 0.7rem 1.4rem 0.6rem;
+      }
+      .header-band {
+        padding: 0.9rem 1.4rem 0.7rem;
+      }
+      .contact-strip a,
+      .contact-strip a:hover { color: var(--gray-7); }
+      .skill-card { break-inside: avoid; }
+      .exp-row { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="page-inner-border">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-band">
+      <h1>
+        <span class="subtitle">Curriculum Vitae</span>
+        Nekaile-Tamia Grant
+      </h1>
+      <div class="contact-strip">
+        <a href="mailto:nekailetamiagrant@gmail.com">nekailetamiagrant@gmail.com</a>
+        <span class="sep">|</span>
+        <span>076 246 5279</span>
+        <span class="sep">|</span>
+        <span>Piet Retief</span>
+      </div>
+    </header>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="content">
+
+      <!-- PROFILE -->
+      <section class="section">
+        <div class="section-head">
+          <span class="accent-line"></span>
+          <h2>Professional Profile</h2>
+          <span class="rule"></span>
+        </div>
+        <p class="profile-text">
+          Dedicated and results-driven professional with cross-functional experience across
+          <strong>Administration</strong>, <strong>Marketing</strong>, <strong>Social Media</strong>,
+          <strong>Call Centre</strong>, and <strong>Hospitality</strong>. Adept at content creation,
+          data capture, campaign support, and delivering exceptional customer experiences. Known for
+          strong organisational abilities, natural rapport-building, and the capacity to thrive in
+          fast-paced environments. Eager to bring versatility and a growth mindset to a dynamic team.
+        </p>
+      </section>
+
+      <!-- CORE COMPETENCIES -->
+      <section class="section">
+        <div class="section-head">
+          <span class="accent-line"></span>
+          <h2>Core Competencies</h2>
+          <span class="rule"></span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h4>Administration</h4>
+            <p>Data capture, filing, email, scheduling &amp; calendar coordination</p>
+          </div>
+          <div class="skill-card">
+            <h4>Marketing</h4>
+            <p>Campaign support, market research, lead gen, content planning</p>
+          </div>
+          <div class="skill-card">
+            <h4>Social Media</h4>
+            <p>Facebook, Instagram &amp; TikTok; content creation, caption writing, engagement</p>
+          </div>
+          <div class="skill-card">
+            <h4>Call Centre</h4>
+            <p>Inbound &amp; outbound calls, customer support, sales, complaints handling</p>
+          </div>
+          <div class="skill-card">
+            <h4>Hospitality</h4>
+            <p>Waitering, front-of-house, cash handling, order management, service standards</p>
+          </div>
+          <div class="skill-card">
+            <h4>Core Strengths</h4>
+            <p>Communication, time management, teamwork, problem-solving, adaptability</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFESSIONAL EXPERIENCE -->
+      <section class="section" style="flex:1;">
+        <div class="section-head">
+          <span class="accent-line"></span>
+          <h2>Professional Experience</h2>
+          <span class="rule"></span>
+        </div>
+        <div class="exp-list">
+
+          <div class="exp-row">
+            <div class="exp-meta">
+              <span class="title">Marketing Assistant</span>
+              <span class="company">MadsLabs</span>
+              <span class="dates">Apr – Jun 2026</span>
+            </div>
+            <div class="exp-body">
+              <ul>
+                <li>Planned and executed marketing campaigns; created content and managed posting schedules</li>
+                <li>Supported admin operations: reporting, data entry, customer follow-ups, performance tracking</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-meta">
+              <span class="title">Social Media Marketing</span>
+              <span class="company">Freelance / Contract</span>
+              <span class="dates">Ongoing freelance</span>
+            </div>
+            <div class="exp-body">
+              <ul>
+                <li>Managed Facebook &amp; Instagram pages; designed posts, wrote captions, grew brand awareness</li>
+                <li>Responded to customer enquiries, boosted engagement, aligned content with platform trends</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-meta">
+              <span class="title">Call Centre Agent</span>
+              <span class="company">COMM</span>
+              <span class="dates">Feb – May 2023</span>
+            </div>
+            <div class="exp-body">
+              <ul>
+                <li>Handled high-volume inbound &amp; outbound calls; resolved queries and complaints professionally</li>
+                <li>Met daily performance targets for call handling and sales; maintained accurate CRM records</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-meta">
+              <span class="title">Waitress</span>
+              <span class="company">Ocean Basket</span>
+              <span class="dates">Jan – Dec 2021</span>
+            </div>
+            <div class="exp-body">
+              <ul>
+                <li>Delivered attentive service in a busy restaurant; took orders, processed payments, handled cash</li>
+                <li>Maintained dining standards; collaborated with team during peak hours under pressure</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-meta">
+              <span class="title">Administrative Assistant</span>
+              <span class="company">Lee-ann SL Contractors</span>
+              <span class="dates">2025 · Temporary</span>
+            </div>
+            <div class="exp-body">
+              <ul>
+                <li>Performed data capturing, digital filing, email correspondence; scheduled appointments</li>
+                <li>Supported daily admin operations and ad-hoc tasks for the broader team</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- EDUCATION -->
+        <section class="section">
+          <div class="section-head">
+            <span class="accent-line"></span>
+            <h2>Education &amp; Development</h2>
+            <span class="rule"></span>
+          </div>
+          <div class="edu-block">
+            <p><strong>Experiential Pathway</strong> — Strong hands-on foundation built across multiple
+            disciplines: customer engagement, operational support, and brand communication. Every role
+            has been a deliberate step toward mastering these competencies through real-world practice.</p>
+          </div>
+        </section>
+
+        <!-- REFERENCES (pinned to bottom) -->
+        <section class="ref-section">
+          <div class="section-head">
+            <span class="accent-line"></span>
+            <h2>References</h2>
+            <span class="rule"></span>
+          </div>
+          <p class="ref-note">Professional references are available upon request.</p>
+        </section>
+      </section>
+
+    </div><!-- /content -->
+  </div><!-- /page-inner-border -->
+</div><!-- /page -->
+
+</body>
+</html>
